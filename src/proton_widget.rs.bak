@@ -1,0 +1,41 @@
+use iced_widget::{container, row, text, Component};
+pub struct ProtonWidget {
+    name: String,
+    installed: bool,
+}
+
+enum states {
+    Installed,
+    Uninstalled,
+    Installing,
+}
+
+#[derive(Default)]
+pub struct ProtonWidgetState {}
+
+pub enum ProtonWidgetEvent {}
+
+impl<Message, Renderer> Component<Message, Renderer> for ProtonWidget {
+    type State = ProtonWidgetState;
+
+    type Event = ProtonWidgetEvent;
+
+    fn update(&mut self, state: &mut Self::State, event: Self::Event) -> Option<Message> {
+        todo!()
+    }
+
+    fn view(&self, state: &Self::State) -> iced_widget::core::Element<'_, Self::Event, Renderer> {
+        container(row![
+            text(self.name),
+            horizontal_space(Length::Fill),
+            button("install")
+        ])
+        .into()
+    }
+}
+
+impl ProtonWidget {
+    pub fn new(name: String, installed: bool) -> ProtonWidget {
+        Self { name, installed }
+    }
+}
