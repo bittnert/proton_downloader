@@ -8,9 +8,9 @@ use tar::Archive;
 pub fn install(release: &Proton) -> iced::Subscription<(String, Progress)> {
     let id = release.get_name();
     subscription::unfold(
-        id,
+        id.clone(),
         State::Ready(release.get_checksum_url(), release.get_tarball_url()),
-        move |state| start_installation(id, state),
+        move |state| start_installation(id.clone(), state),
     )
 }
 

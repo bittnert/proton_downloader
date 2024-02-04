@@ -1,5 +1,5 @@
 pub mod install;
-pub mod installer;
+//pub mod installer;
 pub mod proton;
 use flate2::read::GzDecoder;
 use iced::executor;
@@ -111,8 +111,9 @@ impl Application for Downloader {
                     println!("{:?}", url.host());
                 }*/
                 //Command::none()
-                Command::perform(item.install(), Message::Installed)
+                //Command::perform(item.install(), Message::Installed)
                 //Command::perform(download_proton(name), Message::Installed)
+                Command::none()
             }
             Message::Installed(success) => {
                 println!("Installed");
@@ -164,9 +165,9 @@ impl Downloader {
         for item in self.proton_list {
             retval.push(
                 container(row![
-                    text(item.get_name()),
+                    text(item.0),
                     horizontal_space(Length::Fill),
-                    button("Install").on_press(Message::Install(&item))
+                    button("Install").on_press(Message::Install(item.0))
                 ])
                 .padding(1)
                 .into(),

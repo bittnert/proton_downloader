@@ -112,7 +112,7 @@ impl Proton {
 
     async fn download(&mut self) -> Result<String, DownloaderError> {
         self.status = proton_status::Downloading;
-        let (tarball_url, checksum_url) = self.get_proton_urls(&self.release)?;
+        let (tarball_url, checksum_url) = get_proton_urls(&self.release)?;
 
         println!("tarball url: {}", tarball_url);
         println!("checksum url: {}", checksum_url);
